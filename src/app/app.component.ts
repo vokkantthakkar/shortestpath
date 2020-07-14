@@ -1,13 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'shortestpath';
+
+  options:FormGroup ;
+  //elevationControl = new FormControl('primary') ;
+
+  constructor(private fb: FormBuilder) {
+    //this.options = fb.group({color : this.elevationControl}) ;
+    this.options = this.fb.group({
+      "Rows" :[null,Validators.compose([Validators.required, Validators.min(5),Validators.max(15)])],
+      "Columns" :[null,Validators.compose([Validators.required, Validators.min(5),Validators.max(15)])],
+      "startPoint": [null,Validators.required],
+      "endPoint":[null,Validators.required]
+      
+    });
+  }
+
+
+
+  ngOnInit()  {
+    this.createGrid() ;
+
+  }
+
+  createGrid() {
+    
+  }
 }
+
+  
+
 
 export class Node {
   row: number ;

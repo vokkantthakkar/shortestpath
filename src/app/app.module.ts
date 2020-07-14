@@ -5,7 +5,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar' ;
 import { MatButtonModule} from '@angular/material/button' ;
-import { FormsModule} from '@angular/forms' ;
+import { FormsModule, ReactiveFormsModule} from '@angular/forms' ;
+import { MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule, MatCard} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 @NgModule({
   declarations: [
@@ -16,7 +22,12 @@ import { FormsModule} from '@angular/forms' ;
     BrowserAnimationsModule,
     MatToolbarModule,
     FormsModule,
-    MatButtonModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

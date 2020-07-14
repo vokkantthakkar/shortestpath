@@ -4,6 +4,24 @@
   <a href= "https://github.com/vokkantthakkar/shortestpath" mat-button>Github</a>
 </mat-toolbar>
 
-<form>
-  
-</form>
+
+
+    
+<form class="parameters"[formGroup]="options" >
+
+      <input  type="text" formControlName="options" placeholder="Rows: ">
+      <input type="text" formControlName="options" placeholder="Columns: ">
+      <a mat-button>Start Point</a>
+      <a mat-button>End Point</a>
+      <a mat-button>High Elevation</a>
+      <a mat-button>Extreme Elevation</a>
+      <a mat-button>SUBMIT</a>
+    
+      <!--<mat-form-field appearance="fill" [color]="elevationControl.value">
+      <mat-select [formControl]="elevationControl">
+      <mat-option value="primary">Red</mat-option>
+      <mat-option value="accent">Accent</mat-option>
+      <mat-option value="warn">Warn</mat-option>
+      </mat-select>
+      </mat-form-field>-->
+  </form>
