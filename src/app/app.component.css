@@ -6,3 +6,18 @@
   margin-left: 8px ;
 }
 
+.gridContainer{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.rowDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

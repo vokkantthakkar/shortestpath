@@ -10,12 +10,14 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule, MatCard} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ElementComponent } from './element/element.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ElementComponent
   ],
   imports: [
     BrowserModule,

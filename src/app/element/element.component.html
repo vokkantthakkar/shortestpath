@@ -1,0 +1,12 @@
+<div [ngClass] = "{
+    'elementStyle': true,
+    'elementBlocked': node.isBlocked,
+    'elementStartPoint': node.StartPoint,
+    'elementEndPoint': node.EndPoint,
+    'elementVisited': (node.isVisited && !node.isBlocked && !node.EndPoint && !node.StartPoint),
+    'elementShortestPath': node.isInShortestPath,
+    'elementInProgress': node.isInProgress,
+    'onHoverPointer':boxAction
+}" (click)="ElementClick()">
+    {{node?.distance}}
+</div>

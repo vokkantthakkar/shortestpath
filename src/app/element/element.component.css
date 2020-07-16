@@ -1,0 +1,19 @@
+
+
+.elementStyle{
+    width: 30px;
+    height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px;
+    margin: 0px;
+    font-size:0.4em;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#f8f8f8;
+}
+
+.boxDefaultStyle{
+    background:#f8f8f8;
+}

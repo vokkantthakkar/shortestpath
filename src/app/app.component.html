@@ -6,22 +6,31 @@
 
 
 
-    
+<div>  
+  
 <form class="parameters"[formGroup]="options" >
 
-      <input  type="text" formControlName="options" placeholder="Rows: ">
-      <input type="text" formControlName="options" placeholder="Columns: ">
+      <input type="number"matInput formControlName="Rows" placeholder="Rows: ">
+      <input type="number" matInput formControlName="Columns" placeholder="Columns: ">
       <a mat-button>Start Point</a>
       <a mat-button>End Point</a>
       <a mat-button>High Elevation</a>
       <a mat-button>Extreme Elevation</a>
       <a mat-button>SUBMIT</a>
-    
-      <!--<mat-form-field appearance="fill" [color]="elevationControl.value">
+    <!--
+      <mat-form-field appearance="fill" [color]="elevationControl.value">
       <mat-select [formControl]="elevationControl">
       <mat-option value="primary">Red</mat-option>
       <mat-option value="accent">Accent</mat-option>
       <mat-option value="warn">Warn</mat-option>
       </mat-select>
       </mat-form-field>-->
-  </form>
+</form>
+</div>
+
+<div class="gridContainer">
+  <div *ngFor="let row of gridRows" class="rowDiv">
+      <element *ngFor="let col of gridCols" [node]="gridArr[row][col]"></element>
+  </div>
+</div>
+
