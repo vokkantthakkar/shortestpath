@@ -30,7 +30,7 @@
 
 <div class="gridContainer">
   <div *ngFor="let row of gridRows" class="rowDiv">
-      <element *ngFor="let col of gridCols" [node]="gridArr[row][col]"></element>
+      <app-element *ngFor="let col of gridCols" [node]="gridArr[row][col]"></app-element>
   </div>
 </div>
 

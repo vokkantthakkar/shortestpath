@@ -21,12 +21,8 @@ export class ElementComponent implements OnInit {
 
   ngOnInit() { }
 
-  createPageActionPayload(action: string, data: any){
-    return {
-      "action": action,
-      "data": data
-    }
-  }
+
+  
 
   ElementClick() {
 

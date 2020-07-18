@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   options:FormGroup = null ;
   //elevationControl = new FormControl('primary') ;
 
-  ROWS : 10 ;
-  COLUMNS : 10 ;
+  ROWS = 10 ;
+  COLUMNS = 10 ;
 
   gridRows: Array<number> = null ;
   gridCols: Array<number> = null ;
