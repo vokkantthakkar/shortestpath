@@ -12,7 +12,7 @@
 
       <input type="number"matInput formControlName="Rows" placeholder="Rows: ">
       <input type="number" matInput formControlName="Columns" placeholder="Columns: ">
-      <a mat-button>Start Point</a>
+      <a mat-button [ngClass]="{'buttonSelected': (elementType == 'START')}" (click)="selectElement('START')">Start Point - {{elementType == 'START'?'ON':'OFF'}}</a>
       <a mat-button>End Point</a>
       <a mat-button>High Elevation</a>
       <a mat-button>Extreme Elevation</a>

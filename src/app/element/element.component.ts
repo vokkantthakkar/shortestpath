@@ -12,8 +12,8 @@ export class ElementComponent implements OnInit {
 
   @Input("node")
   node: Node ;
-  @Input("boxAction")
-  boxAction:string = null ;
+  @Input("elementType")
+  elementType:string  ;
   @Input("visited")
   visited ;
 
@@ -25,7 +25,11 @@ export class ElementComponent implements OnInit {
   
 
   ElementClick() {
-
+    if(this.elementType == "START") {
+      this.node.setStartPoint() ;
+    }
   }
+
+  
 
 }

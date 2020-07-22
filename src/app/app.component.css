@@ -21,3 +21,8 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.buttonSelected{
+  background: green ;
+  color:white ;
+}

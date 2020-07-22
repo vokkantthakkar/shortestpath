@@ -25,6 +25,11 @@ export class Node {
       this.isInShortestPath = null ;
       this.isInProgress = null ;
     }
+
+    setPosition(x:number,y:number){
+      this.row = y ;
+      this.column = x ;
+    }
   
     setStartPoint() {
       this.StartPoint = true ;
@@ -42,18 +47,6 @@ export class Node {
       this.isVisited = true ;
     }
   
-    setPosition(x:number,y:number){
-      this.row = y ;
-      this.column = x ;
-    }
+   
   
-    calculateDistance(currentNode:Node) {
-      let dist = currentNode.distance?currentNode.distance+1:1 ;
-      if(!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > dist)){
-        this.distance = dist ;
-        this.distanceFrom = currentNode ;
-      }
-      return this ;
-    }
   }
-  

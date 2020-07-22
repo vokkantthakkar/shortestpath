@@ -6,7 +6,9 @@
     'elementVisited': (node.isVisited && !node.isBlocked && !node.EndPoint && !node.StartPoint),
     'elementShortestPath': node.isInShortestPath,
     'elementInProgress': node.isInProgress,
-    'onHoverPointer':boxAction
+    'hover':elementType
 }" (click)="ElementClick()">
     {{node?.distance}}
 </div>
+
+<!-- 'hover':elementType-->

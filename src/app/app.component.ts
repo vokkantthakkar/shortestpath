@@ -5,6 +5,8 @@ import { _ParseAST } from '@angular/compiler';
 import * as _ from 'underscore';
 
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,12 +24,13 @@ export class AppComponent implements OnInit {
   gridRows: Array<number> = null ;
   gridCols: Array<number> = null ;
   gridArr : Array<Array<Node>> = null ;
+  elementType:string = null ;
 
   constructor(private fb: FormBuilder) {
     //this.options = fb.group({color : this.elevationControl}) ;
     this.options = this.fb.group({
-      "Rows" :[null,Validators.compose([Validators.required, Validators.min(5)])],
-      "Columns" :[null,Validators.compose([Validators.required, Validators.min(5)])],
+      "Rows" :[null,[Validators.required, Validators.min(5)]],
+      "Columns" :[null,[Validators.required, Validators.min(5)]],
       "startPoint": [null,Validators.required],
       "endPoint":[null,Validators.required]
       
@@ -62,5 +65,14 @@ export class AppComponent implements OnInit {
                               .value() ;
                     })
                     .value() ;
+  }
+
+  selectElement(elementType) {
+    if(elementType == 'START') {
+      this.elementType = elementType ;
+    }
+    else if(elementType == 'DESTINATION') {
+      this.elementType = elementType ;
+    }
   }
 }
