@@ -2,26 +2,43 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
-## Development server
+This project was as a part of the Microsoft Mars Colonization Program.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It consists of a web application to visualise Dijkstra's algorithm in a user defined grid with 3 types of predetermined weights.
 
-## Code scaffolding
+## Instructions to run
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application is deployed on Firebase and is available [here](https://shortestpath-mars-rover.web.app/)
 
-## Build
+To run this project on your local machine clone the repository
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm install` to install the dependancies.
+Run `ng serve` to run a local server on localhost/4200
 
-## Running unit tests
+## Workflow
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This application is a front end application built using Angular. Angular is a typescript based open source web application framework made by Google. It has a Single Page Application Architecture with only one index.html file. It is composed of various components that interact with each other and let users make dynamic changes to their webpages.
 
-## Running end-to-end tests
+The components in this angular application are:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+element - forms one small box on a grid. The grid is present in the main app.component and is rendered by forming a 2D array of elements in the html file by using the ngFor directive. Each element points to a class Node which contains the status of each Node in the application with objects such as row, column, startPoint, endPoint, etc.
+It includes the css styling to change colours when interacted with and when given a certain property.
 
-## Further help
+Node - is the logic behind each element. Contains various fields to store the current state of the element along with a function to update the distance from the previous element, by comparing values and selecting the shorter value.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+app.component - contains the overall design of the web page including the toolbar, the form and the grid composed of individual element components. It includes the main code to find the shortest path, which operates by using the distance object in the node, and comparing it to its neighbours and updating it.
+
+## Screenshots
+
+-Green is Start Point
+-Blue is End Point
+-Light elevation corresponds to a weight of 1.2 units.
+-High elevation corresponds to a weight of 1.4 units.
+-Extreme elevation corresponds to impassable terrain.
+-On clicking submit, the green line will give the shortest path.
+
+![Screenshot from 2020-07-24 23-26-48](https://user-images.githubusercontent.com/51082769/88423464-75868880-ce09-11ea-968e-2fddd83129ce.png)
+![Screenshot from 2020-07-24 23-27-17](https://user-images.githubusercontent.com/51082769/88423469-77504c00-ce09-11ea-8da5-c6aa2c12c868.png)
+![Screenshot from 2020-07-24 23-35-32](https://user-images.githubusercontent.com/51082769/88423471-77e8e280-ce09-11ea-9987-97bb0cb822ab.png)
+![Screenshot from 2020-07-24 23-35-54](https://user-images.githubusercontent.com/51082769/88423475-78817900-ce09-11ea-8a89-b681756b39f1.png)
+
