@@ -33,6 +33,7 @@ export class Node {
   
     setStartPoint() {
       this.StartPoint = true ;
+      this.distance = 0 ;
     }
   
     setEndPoint() {
@@ -46,7 +47,15 @@ export class Node {
     visit() {
       this.isVisited = true ;
     }
-  
+    
+    updateDistance(visitingNode : Node) {
+      let newDistance = visitingNode.distance?visitingNode.distance+1:1 ;
+      if (!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > newDistance)){
+        this.distance = newDistance;
+        this.distanceFrom = visitingNode;
+    }
+    return this;
+    }
    
   
   }

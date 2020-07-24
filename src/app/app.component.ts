@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   gridCols: Array<number> = null ;
   gridArr : Array<Array<Node>> = null ;
   elementType:string = null ;
+  evalNodeList = [] ;
 
   constructor(private fb: FormBuilder) {
     //this.options = fb.group({color : this.elevationControl}) ;
@@ -68,11 +69,135 @@ export class AppComponent implements OnInit {
   }
 
   selectElement(elementType) {
-    if(elementType == 'START') {
+    if(elementType === 'START') {
       this.elementType = elementType ;
+      this.resetGridProperty('StartPoint',false) ;
     }
     else if(elementType == 'DESTINATION') {
       this.elementType = elementType ;
     }
+    else if (elementType ==='BLOCKER') {
+      if(this.elementType ==='BLOCKER'){
+        this.clearBoxAction();
+      }else{
+        this.elementType = elementType;
+      }
+    }
   }
+  clearBoxAction(){
+    this.elementType = null;
+  }
+  
+
+  resetGridProperty(propertName, value){
+    for(let row of this.gridArr){
+      for (let node of row){
+        node[propertName]=value;
+      }
+    }
+  }
+  pageAction(event){
+    let {action, data} = event;
+    if(action == "SET_START_NODE"){
+      this.options.get("startPoint").setValue(data);
+    }else if(action == "SET_DEST_NODE"){
+      this.options.get("endPoint").setValue(data);
+    }else if(action == "CLEAR_BOX_ACTION"){
+      this.clearBoxAction();
+    }
+  }
+/*
+  shortestPath() {
+    let startNode = this.options.get("startPoint").value ;
+    let destNode = this.options.get("endPoint").value ;
+    let destNeighbours = this.findNeighbours(destNode) ;
+    console.log(startNode) ;
+
+    this.evalNodeList.push(startNode) ;
+
+    for(let node of this.evalNodeList) {
+      if(!node.isVisited) {
+        this.updateNeighborsDistance(node) ;
+      }
+      if(this.checkIfDest(destNeighbours)){
+        break ;
+      }
+    }
+
+    let currNode = destNode ;
+    for(let idx = 0; idx<destNode.distance-1; idx++) {
+      let prevNodeInShortestPath = currNode.distanceFrom ;
+      this.gridArr[prevNodeInShortestPath.y][prevNodeInShortestPath.x].isInShortestPath = true ;
+      currNode = prevNodeInShortestPath ;
+    }
+  }
+
+  checkIfDest(neighbours) {
+
+    let isAllNeighbourVisited = true ;
+    for(let pos of neighbours) {
+      let node = this.gridArr[pos.y][pos.x] ;
+      isAllNeighbourVisited = isAllNeighbourVisited && (node.isVisited || node.isBlocked) ;
+    }
+    if(isAllNeighbourVisited){
+      return true ;
+    }else {
+      return false ;
+    }
+  }
+  
+  updateNeighborsDistance = (node:Node) => {
+    let neighbours = this.findNeighbours(node) ;
+    if(neighbours){
+      for (let pos of neighbours){
+
+        let n = this.gridArr[pos.y][pos.x]; 
+        this.gridArr[pos.y][pos.x] = n.updateDistance(node);
+
+        if(!n.EndPoint && !n.StartPoint && !n.isBlocked && !n.isVisited){
+          // adding to evaluation list
+          this.evalNodeList.push(n);
+        }
+      }
+    }
+    // Mark the visiting node as Visited once the neighbour's distance are calculated 
+    // and added to evaluation list
+    node.visit();
+  }
+  
+  findNeighbours({row, column}){
+    
+    let validNeighors = [];
+
+    //if left is restricted
+    if(column == 0){
+      validNeighors.push({"x": column+1,row});
+    }
+    //if right is restricted
+    else if (column == this.COLUMNS-1){
+      validNeighors.push({"x": column-1,row});
+    }
+    //if no x direction restriction
+    else{
+      validNeighors.push({"x": column+1,row});
+      validNeighors.push({"x":column-1,row});
+    }
+
+    //if up is restricted
+    if(row == 0){
+      validNeighors.push({column,"y":row+1});
+    }
+    //if down is restricted
+    else if (row == this.ROWS-1){
+      validNeighors.push({column,"y":row-1});
+    }
+    //if no y direction restriction
+    else{
+      validNeighors.push({column,"y":row+1});
+      validNeighors.push({column,"y":row-1});
+    }
+
+    return validNeighors;
+  }
+*/
 }

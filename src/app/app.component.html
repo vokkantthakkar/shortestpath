@@ -13,9 +13,9 @@
       <input type="number"matInput formControlName="Rows" placeholder="Rows: ">
       <input type="number" matInput formControlName="Columns" placeholder="Columns: ">
       <a mat-button [ngClass]="{'buttonSelected': (elementType == 'START')}" (click)="selectElement('START')">Start Point - {{elementType == 'START'?'ON':'OFF'}}</a>
-      <a mat-button>End Point</a>
+      <a mat-button [ngClass]="{'buttonSelected': (elementType == 'DESTINATION')}" (click)="selectElement('DESTINATION')">End Point - {{elementType == 'DESTINATION'?'ON':'OFF'}}</a>
       <a mat-button>High Elevation</a>
-      <a mat-button>Extreme Elevation</a>
+      <a mat-button [ngClass]="{'buttonSelected':  (elementType == 'BLOCKER')}" (click)="selectElement('BLOCKER')">High Elevation - {{elementType == 'BLOCKER'?'ON':'OFF'}}</a>
       <a mat-button>SUBMIT</a>
     <!--
       <mat-form-field appearance="fill" [color]="elevationControl.value">
@@ -30,7 +30,7 @@
 
 <div class="gridContainer">
   <div *ngFor="let row of gridRows" class="rowDiv">
-      <app-element *ngFor="let col of gridCols" [node]="gridArr[row][col]"></app-element>
+      <app-element *ngFor="let col of gridCols" [node]="gridArr[row][col]"[visited]="gridArr[row][col].isVisited"[elementType]="elementType"  (pageAction)="pageAction($event)"></app-element>
   </div>
 </div>
 

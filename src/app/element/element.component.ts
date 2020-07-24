@@ -8,25 +8,43 @@ import { Node } from 'src/app/Node/Node'
 })
 export class ElementComponent implements OnInit {
 
-  constructor() { }
+  
 
   @Input("node")
   node: Node ;
   @Input("elementType")
-  elementType:string  ;
+  elementType : string = null  ;
   @Input("visited")
   visited ;
-
-
-
+  
+  @Output("pageAction")
+  pageAction:EventEmitter<{action: string, data: any}> = new EventEmitter();
+  
+  constructor() { }
+  
   ngOnInit() { }
 
-
+  createPageActionPayload(action: string, data: any){
+    return {
+      "action": action,
+      "data": data
+    }
+  }
   
 
   ElementClick() {
     if(this.elementType == "START") {
       this.node.setStartPoint() ;
+      this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
+      this.pageAction.emit(this.createPageActionPayload("SET_START_NODE", this.node));
+    }
+    if(this.elementType == "DESTINATION") {
+      this.node.setEndPoint() ;
+      this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
+      this.pageAction.emit(this.createPageActionPayload("SET_DEST_NODE", this.node));
+    }
+    if(this.elementType == "BLOCKER"){
+      this.node.block();
     }
   }
 
