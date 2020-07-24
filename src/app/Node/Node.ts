@@ -1,6 +1,6 @@
 export class Node {
-    row: number ;
-    column: number ;
+    x: number ;
+    y: number ;
   
     distance: number | null;
     distanceFrom: Node ;
@@ -14,8 +14,8 @@ export class Node {
   
     
     constructor() {
-      this.row = 0 ;
-      this.column = 0 ;
+      this.x = 0 ;
+      this.y = 0 ;
       this.distance = null ;
       this.distanceFrom = null ;
       this.StartPoint = null ;
@@ -26,9 +26,9 @@ export class Node {
       this.isInProgress = null ;
     }
 
-    setPosition(x:number,y:number){
-      this.row = y ;
-      this.column = x ;
+    setPosition(row :number,column:number){
+      this.y = row ;
+      this.x = column ;
     }
   
     setStartPoint() {

@@ -16,7 +16,7 @@
       <a mat-button [ngClass]="{'buttonSelected': (elementType == 'DESTINATION')}" (click)="selectElement('DESTINATION')">End Point - {{elementType == 'DESTINATION'?'ON':'OFF'}}</a>
       <a mat-button>High Elevation</a>
       <a mat-button [ngClass]="{'buttonSelected':  (elementType == 'BLOCKER')}" (click)="selectElement('BLOCKER')">High Elevation - {{elementType == 'BLOCKER'?'ON':'OFF'}}</a>
-      <a mat-button>SUBMIT</a>
+      <a mat-button (click)="findShortestPath()">SUBMIT</a>
     <!--
       <mat-form-field appearance="fill" [color]="elevationControl.value">
       <mat-select [formControl]="elevationControl">
@@ -30,7 +30,7 @@
 
 <div class="gridContainer">
   <div *ngFor="let row of gridRows" class="rowDiv">
-      <app-element *ngFor="let col of gridCols" [node]="gridArr[row][col]"[visited]="gridArr[row][col].isVisited"[elementType]="elementType"  (pageAction)="pageAction($event)"></app-element>
+      <app-element *ngFor="let col of gridCols" [node]="gridArr[row][col]" [elementType]="elementType" (pageAction)="pageAction($event)"></app-element>
   </div>
 </div>
 

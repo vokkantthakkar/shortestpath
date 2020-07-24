@@ -11,6 +11,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule, MatCard} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ElementComponent } from './element/element.component';
+import { HttpClientModule }    from '@angular/common/http';
 
 
 
@@ -29,7 +30,8 @@ import { ElementComponent } from './element/element.component';
     MatFormFieldModule,
     MatSelectModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
