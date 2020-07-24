@@ -4,7 +4,8 @@
 
 .parameters {
   margin-left: 8px ;
-  flex: 1 1 auto;
+  vertical-align: left;
+  
 }
 
 .gridContainer{
@@ -23,7 +24,21 @@
   align-items: flex-start;
 }
 
-.buttonSelected{
-  background: green ;
-  color:white !important;
+.buttonSelected1{
+  background:  rgb(0, 255, 34) ;
+}
+.buttonSelected2{
+  background: blue ;
+
+}
+.buttonSelected3{
+  background: yellow;
+}
+.buttonSelected4{
+  background: orange;
+  
+}
+.buttonSelected5 {
+  background: red;
+  
 }

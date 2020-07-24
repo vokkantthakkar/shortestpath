@@ -8,7 +8,8 @@ import { Node } from 'src/app/Node/Node'
 })
 export class ElementComponent implements OnInit {
 
-  
+  //represents one square box in the grid
+  //creates the visual representation of a node with multiple properties
 
   @Input("node")
   node: Node ;
@@ -31,17 +32,30 @@ export class ElementComponent implements OnInit {
     }
   }
   
+  // Emits an event that is caught by the pageAction function in the app.component file and is used to send value of assigned node there
 
   ElementClick() {
     if(this.elementType == "START") {
-      this.node.setStartPoint() ;
-      this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
-      this.pageAction.emit(this.createPageActionPayload("SET_START_NODE", this.node));
+      if(this.node.StartPoint){
+        this.node.StartPoint = false ;
+        this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));  
+      }
+      else{
+        this.node.setStartPoint() ;
+        this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
+        this.pageAction.emit(this.createPageActionPayload("SET_START_NODE", this.node));
     }
+  }
     if(this.elementType == "DESTINATION") {
-      this.node.setEndPoint() ;
-      this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
-      this.pageAction.emit(this.createPageActionPayload("SET_DEST_NODE", this.node));
+      if(this.node.EndPoint) {
+        this.node.EndPoint = false ;
+        this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));  
+      }
+      else {
+        this.node.setEndPoint() ;
+        this.pageAction.emit(this.createPageActionPayload("CLEAR_BOX_ACTION", null));
+        this.pageAction.emit(this.createPageActionPayload("SET_DEST_NODE", this.node));
+      }
     }
     if(this.elementType == "BLOCKER"){
       this.node.block();

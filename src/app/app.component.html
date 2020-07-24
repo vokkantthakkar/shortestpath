@@ -7,16 +7,16 @@
 
 
 <div>  
-  
-<form class="parameters"[formGroup]="options" >
-
-      <span><input type="number"matInput formControlName="Rows" placeholder="Rows: "></span>
-      <span><input type="number" matInput formControlName="Columns" placeholder="Columns: "></span>
-      <span><a mat-button [ngClass]="{'buttonSelected': (elementType == 'START')}" (click)="selectElement('START')">Start Point - {{elementType == 'START'?'ON':'OFF'}}</a></span>
-      <span><a mat-button [ngClass]="{'buttonSelected': (elementType == 'DESTINATION')}" (click)="selectElement('DESTINATION')">End Point - {{elementType == 'DESTINATION'?'ON':'OFF'}}</a></span>
-      <span><a mat-button [ngClass]="{'buttonSelected':  (elementType == 'HIGH ELEVATION')}" (click)="selectElement('HIGH ELEVATION')">High Elevation - {{elementType == 'HIGH ELEVATION'?'ON':'OFF'}}</a></span>
-      <span><a mat-button [ngClass]="{'buttonSelected':  (elementType == 'BLOCKER')}" (click)="selectElement('BLOCKER')">High Elevation - {{elementType == 'BLOCKER'?'ON':'OFF'}}</a></span>
-      <span><a mat-button (click)="findShortestPath()">SUBMIT</a></span>
+  <form class="parameters"[formGroup]="options" >
+    <input type="number"matInput formControlName="Rows" placeholder="Rows: ">
+    <input type="number" matInput formControlName="Columns" placeholder="Columns: ">
+    <a mat-button  [ngClass]="{'buttonSelected1': (elementType == 'START')}" (click)="selectElement('START')">Start Point</a>   
+    <a mat-button  [ngClass]="{'buttonSelected2': (elementType == 'DESTINATION')}" (click)="selectElement('DESTINATION')">End Point</a>
+    <a mat-button  [ngClass]="{'buttonSelected3':  (elementType == 'GOOD ELEVATION')}" (click)="selectElement('GOOD ELEVATION')">Good Elevation</a>
+    <a mat-button  [ngClass]="{'buttonSelected4':  (elementType == 'HIGH ELEVATION')}" (click)="selectElement('HIGH ELEVATION')">High Elevation</a>
+    <a mat-button  [ngClass]="{'buttonSelected5':  (elementType == 'BLOCKER')}" (click)="selectElement('BLOCKER')">Extreme Elevation</a>
+    <a mat-button  (click)="findShortestPath()">SUBMIT</a>
+    <a mat-button  (click)="reset()">RESET</a>
     <!--
       <mat-form-field appearance="fill" [color]="elevationControl.value">
       <mat-select [formControl]="elevationControl">
@@ -25,7 +25,7 @@
       <mat-option value="warn">Warn</mat-option>
       </mat-select>
       </mat-form-field>-->
-</form>
+  </form>
 </div>
 
 <div class="gridContainer">

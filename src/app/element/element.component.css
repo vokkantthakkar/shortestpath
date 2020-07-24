@@ -25,7 +25,7 @@
 }
 
 .elementGoodElevation{
-    background: green ;
+    background: yellow ;
 }
 .elementHighElevation {
     background:  orange;
@@ -36,7 +36,7 @@
 }
 
 .elementShortestPath {
-    background:  rgb(130, 245, 140) ;
+    background:  green ;
 }
 .hover {
     cursor: pointer;

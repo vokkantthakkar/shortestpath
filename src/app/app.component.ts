@@ -30,13 +30,14 @@ export class AppComponent implements OnInit {
   startPoint: Node ;
   endPoint: Node ;
 
+  // Asking the user to input the no. of rows and columns to create a grid
+
   constructor(private fb: FormBuilder) {
     //this.options = fb.group({color : this.elevationControl}) ;
     this.options = this.fb.group({
       "Rows" :[null,[Validators.required, Validators.min(5)]],
       "Columns" :[null,[Validators.required, Validators.min(5)]],
-      //"startPoint": [null,Validators.required],
-      //"endPoint":[null,Validators.required]
+      
       
     });
     this.options.valueChanges.subscribe(optionsForm => {
@@ -46,12 +47,13 @@ export class AppComponent implements OnInit {
     }) ;
   }
 
-
+  // Creates a default 10x10 grid on initialisation
 
   ngOnInit()  {
     this.createGrid() ;
-
   }
+
+  // Function to create the grid
 
   createGrid() {
 
@@ -71,10 +73,11 @@ export class AppComponent implements OnInit {
                     .value() ;
   }
 
+  // Function to dictate the type of node it is
+
   selectElement(elementType) {
     if(elementType === 'START') {
       this.elementType = elementType ;
- 
     }
     else if(elementType == 'DESTINATION') {
       this.elementType = elementType ;
@@ -97,22 +100,16 @@ export class AppComponent implements OnInit {
     this.elementType = null;
   }
   
-
-  resetGridProperty(propertName, value){
-    for(let row of this.gridArr){
-      for (let node of row){
-        node[propertName]=value;
-      }
-    }
-  }
+  // when you interact with an element, it forms an event to be communicated from the element component to app component
+  // this event transfer a string telling us what to do with that data, and the properties of that element
+  
   pageAction(event){
     let {action, data} = event;
     if(action == "SET_START_NODE"){
-      
+      this.startPoint = null ;
       //this.options.get("startPoint").setValue(data);
       //console.log(this.options.controls['startPoint'].patchValue(data)) ;
       this.startPoint = data ;
-      console.log(this.startPoint) ;
   
     }else if(action == "SET_DEST_NODE"){
       this.endPoint = data ;
@@ -121,9 +118,26 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // function to reset the grid and the nodes
+
+  reset() {
+    this.gridArr = null ;
+    this.startPoint = null ;
+    this.endPoint = null ;
+    this.elementType = null ;
+    this.evalNodeList = [] ;
+    this.options.reset({
+      Rows: this.ROWS ,
+      Columns: this.COLUMNS 
+    })
+    this.createGrid() ;
+  }
+
+  // function to find the shortest path
+  // compares distance from neighbouring nodes to find the shortest path
+
   async findShortestPath(){
     
-
     let startNode = this.startPoint ;
     let destNode = this.endPoint ;
     let destNeighbours = this.findNeighbours(destNode);
@@ -132,13 +146,10 @@ export class AppComponent implements OnInit {
     
     for(let node of this.evalNodeList){
       
-      this.toggleNodeInProcess(node);
-
-      
       if(!node.isVisited){
         this.updateNeighborsDistance(node);
       }
-      this.toggleNodeInProcess(node);
+      
 
       if(this.checkIfDestReached(destNeighbours)){
       break;
@@ -151,10 +162,6 @@ export class AppComponent implements OnInit {
       this.gridArr[prevNodeInShortestPath.y][prevNodeInShortestPath.x].isInShortestPath = true;
       currNode = prevNodeInShortestPath;
     }
-  }
-
-  toggleNodeInProcess(node:Node){
-    node.isInProgress = !node.isInProgress;
   }
 
   checkIfDestReached(neighbours){
@@ -171,6 +178,8 @@ export class AppComponent implements OnInit {
       return false;
     }
   }
+  
+  // updating distance of each and every neighbor
   
   updateNeighborsDistance = (node:Node) => {
     let neighbours = this.findNeighbours(node);
@@ -190,6 +199,8 @@ export class AppComponent implements OnInit {
   
     node.visit();
   }
+
+  // function for various boundary conditions at the edges when finding and evaluating the relevant neighbours
 
   findNeighbours({x, y}){
     
