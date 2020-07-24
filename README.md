@@ -30,12 +30,12 @@ app.component - contains the overall design of the web page including the toolba
 
 ## Screenshots
 
--Green is Start Point
--Blue is End Point
--Light elevation corresponds to a weight of 1.2 units.
--High elevation corresponds to a weight of 1.4 units.
--Extreme elevation corresponds to impassable terrain.
--On clicking submit, the green line will give the shortest path.
+Green is Start Point
+Blue is End Point
+Light elevation corresponds to a weight of 1.2 units.
+High elevation corresponds to a weight of 1.4 units.
+Extreme elevation corresponds to impassable terrain.
+On clicking submit, the green line will give the shortest path.
 
 ![Screenshot from 2020-07-24 23-26-48](https://user-images.githubusercontent.com/51082769/88423464-75868880-ce09-11ea-968e-2fddd83129ce.png)
 ![Screenshot from 2020-07-24 23-27-17](https://user-images.githubusercontent.com/51082769/88423469-77504c00-ce09-11ea-8da5-c6aa2c12c868.png)
