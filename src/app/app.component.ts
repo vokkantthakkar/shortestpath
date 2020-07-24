@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Node } from 'src/app/Node/Node'
 import { _ParseAST } from '@angular/compiler';
 import * as _ from 'underscore';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -78,6 +79,12 @@ export class AppComponent implements OnInit {
     else if(elementType == 'DESTINATION') {
       this.elementType = elementType ;
     }
+    else if(elementType == 'HIGH ELEVATION') {
+      this.elementType = elementType ;
+    }
+    else if(elementType == 'GOOD ELEVATION') {
+      this.elementType = elementType ;
+    }
     else if (elementType ==='BLOCKER') {
       if(this.elementType ==='BLOCKER'){
         this.clearBoxAction();
@@ -121,32 +128,23 @@ export class AppComponent implements OnInit {
     let destNode = this.endPoint ;
     let destNeighbours = this.findNeighbours(destNode);
 
-    // including start node as first evaluating node
     this.evalNodeList.push(startNode);
     
-    // loop through nodes in evaluation node list
     for(let node of this.evalNodeList){
-      //for visualization - turn on node to green
+      
       this.toggleNodeInProcess(node);
 
-      //if the node is not visited then check neighbours
+      
       if(!node.isVisited){
         this.updateNeighborsDistance(node);
       }
-      //for visualization - include delay for visualize green flow
-      
-      //for visualization - turn off node from green
       this.toggleNodeInProcess(node);
 
-      // loop should break if all the neighbours of destination node is visited
       if(this.checkIfDestReached(destNeighbours)){
-        break;
+      break;
       }
     }
 
-    // Plotting the shortest distance path.
-    // this is backtracking from destination node all the way to start node via distance and distanceFrom node
-    // distanceFrom attribute store the previous visted node in shortest path
     let currNode =destNode
     for(let idx=0; idx<destNode.distance-1; idx++){
       let prevNodeInShortestPath = currNode.distanceFrom;
@@ -155,14 +153,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // For visualization. To toggle between if the node being passed is currently being evaluated.
-  // Green color is given to box if the isInProgress is set to true.
   toggleNodeInProcess(node:Node){
     node.isInProgress = !node.isInProgress;
   }
 
-  // Check if all the destination node neighbours are visited / blocked.
-  // if they all are visited then algorithm is complete
   checkIfDestReached(neighbours){
     let isAllNeighbourVisited = true;
 
@@ -178,8 +172,6 @@ export class AppComponent implements OnInit {
     }
   }
   
-  // Evaluating the neighbours distance of visiting node being passed.
-  // The neighbours will then be added to evaulation list for being evaulated down in flow.
   updateNeighborsDistance = (node:Node) => {
     let neighbours = this.findNeighbours(node);
 
@@ -190,44 +182,41 @@ export class AppComponent implements OnInit {
         this.gridArr[pos.y][pos.x] = n.updateDistance(node);
 
         if(!n.EndPoint && !n.StartPoint && !n.isBlocked && !n.isVisited){
-          // adding to evaluation list
+  
           this.evalNodeList.push(n);
         }
       }
     }
-    // Mark the visiting node as Visited once the neighbour's distance are calculated 
-    // and added to evaluation list
+  
     node.visit();
   }
 
-  //Find neighbours based on grid boundary restrictions
   findNeighbours({x, y}){
     
     let validNeighors = [];
 
-    //if left is restricted
+  
     if(x == 0){
       validNeighors.push({"x": x+1,y});
     }
-    //if right is restricted
+  
     else if (x == this.COLUMNS-1){
       validNeighors.push({"x": x-1,y});
     }
-    //if no x direction restriction
+  
     else{
       validNeighors.push({"x": x+1,y});
       validNeighors.push({"x":x-1,y});
     }
 
-    //if up is restricted
+    
     if(y == 0){
       validNeighors.push({x,"y":y+1});
     }
-    //if down is restricted
+    
     else if (y == this.ROWS-1){
       validNeighors.push({x,"y":y-1});
     }
-    //if no y direction restriction
     else{
       validNeighors.push({x,"y":y+1});
       validNeighors.push({x,"y":y-1});

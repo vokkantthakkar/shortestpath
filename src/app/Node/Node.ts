@@ -8,6 +8,8 @@ export class Node {
     StartPoint: boolean ;
     EndPoint: boolean ;
     isVisited: boolean ;
+    isGoodElevation: boolean ;
+    isHighElevation: boolean ;
     isBlocked: boolean ;
     isInShortestPath: boolean ;
     isInProgress : boolean ;
@@ -20,6 +22,8 @@ export class Node {
       this.distanceFrom = null ;
       this.StartPoint = null ;
       this.EndPoint = null ;
+      this.isGoodElevation = null ;
+      this.isHighElevation = null ;
       this.isVisited = null ;
       this.isBlocked = null ;
       this.isInShortestPath = null ;
@@ -47,13 +51,40 @@ export class Node {
     visit() {
       this.isVisited = true ;
     }
-    
-    updateDistance(visitingNode : Node) {
-      let newDistance = visitingNode.distance?visitingNode.distance+1:1 ;
-      if (!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > newDistance)){
-        this.distance = newDistance;
-        this.distanceFrom = visitingNode;
+
+    goodElevation() {
+      this.isGoodElevation = true ;
     }
+    
+    highElevation() {
+      this.isHighElevation = true ;
+    }
+
+    updateDistance(visitingNode : Node) {
+      let newDistance : number ;
+      if(this.isGoodElevation){
+        
+        newDistance = visitingNode.distance?visitingNode.distance+1.2:1 ;
+        if (!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > newDistance)){
+          this.distance = newDistance;
+          this.distanceFrom = visitingNode;
+        }
+      }
+      else if(this.isHighElevation){
+        
+        newDistance = visitingNode.distance?visitingNode.distance+1.4:1 ;
+        if (!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > newDistance)){
+          this.distance = newDistance;
+          this.distanceFrom = visitingNode;
+        }
+      }
+      else {
+        newDistance = visitingNode.distance?visitingNode.distance+1:1 ;
+        if (!this.isBlocked && !this.isVisited && (this.distance == null || this.distance > newDistance)){
+          this.distance = newDistance;
+          this.distanceFrom = visitingNode;
+        }
+      }
     return this;
     }
    

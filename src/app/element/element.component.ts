@@ -46,6 +46,12 @@ export class ElementComponent implements OnInit {
     if(this.elementType == "BLOCKER"){
       this.node.block();
     }
+    if(this.elementType == "HIGH ELEVATION") {
+      this.node.highElevation() ;
+    }
+    if(this.elementType == "GOOD ELEVATION") {
+      this.node.goodElevation() ;
+    }
   }
 
   

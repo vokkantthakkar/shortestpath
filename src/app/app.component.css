@@ -4,6 +4,7 @@
 
 .parameters {
   margin-left: 8px ;
+  flex: 1 1 auto;
 }
 
 .gridContainer{

@@ -21,16 +21,20 @@
 }
 
 .elementBlocked{
-    background: black;
-}
-
-.elementEndPoint{
     background: red;
 }
 
-.elementVisited{
-    background:  rgb(233, 150, 150);
+.elementGoodElevation{
+    background: green ;
 }
+.elementHighElevation {
+    background:  orange;
+}
+
+.elementEndPoint{
+    background: blue;
+}
+
 .elementShortestPath {
     background:  rgb(130, 245, 140) ;
 }
